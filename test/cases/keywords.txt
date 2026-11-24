@@ -1,0 +1,120 @@
+# Commands
+
+def theorem structure inductive class instance namespace
+end section open import variable
+
+==>
+
+Program(
+  Keyword, Keyword, Keyword, Keyword, Keyword, Keyword, Keyword,
+  Keyword, Keyword, Keyword, Keyword, Keyword
+)
+
+# Terms and binders
+
+fun let have show match with by calc
+
+==>
+
+Program(
+  Keyword, Keyword, Keyword, Keyword, Keyword,
+  Keyword, Keyword, Keyword
+)
+
+# What marks code as unfinished is not an ordinary keyword
+
+sorry admit #exit sorry' Foo.sorry #exits
+
+==>
+
+Program(Incomplete, Incomplete, Incomplete, Identifier, Identifier, HashCommand)
+
+# do-notation
+
+do for in while return try catch mut
+
+==>
+
+Program(
+  Keyword, Keyword, Keyword, Keyword,
+  Keyword, Keyword, Keyword, Keyword
+)
+
+# Tactics
+
+simp exact rfl omega decide induction intro constructor
+
+==>
+
+Program(
+  Keyword, Keyword, Keyword, Keyword,
+  Keyword, Keyword, Keyword, Keyword
+)
+
+# Values
+
+true
+false
+
+==>
+
+Program(BooleanLiteral, BooleanLiteral)
+
+# A keyword is only a keyword on its own — even "rec" right after Nat., since it's tokenized fresh
+
+define
+by_the_way
+Nat.rec
+«match»
+
+==>
+
+Program(Identifier, Identifier, QualifiedType, Keyword, Identifier)
+
+# Hash commands
+
+#eval
+#check
+
+==>
+
+Program(HashCommand, HashCommand)
+
+# assert! is the keyword; bare assert is an ordinary name
+
+assert!
+assert
+
+==>
+
+Program(Keyword, Identifier)
+
+# Mathlib's tactics are ordinary names, like its lemma
+
+by_contra
+trans
+use
+
+==>
+
+Program(Identifier, Identifier, Identifier)
+
+# Tactics named with everyday words stay plain, as names and in a proof
+
+| branch (value : α) (left right : Tree α)
+next : Option Nat
+| first : Week
+x.volumes.first .fail
+by cases h with | inl h => right; exact h
+
+==>
+
+Program(
+  Operator, Identifier, Parens(Identifier, Operator, Identifier),
+  Parens(Identifier, Identifier, Operator, Identifier, Identifier),
+  Identifier, Operator, TypeName, TypeName,
+  Operator, Identifier, Operator, Identifier,
+  Identifier, Operator, Identifier,
+  Keyword, Identifier, Identifier, Keyword, Operator, Identifier, Identifier, Operator,
+  Identifier, Operator, Keyword, Identifier
+)
