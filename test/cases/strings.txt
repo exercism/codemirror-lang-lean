@@ -1,0 +1,60 @@
+# Strings
+
+""
+"Hello, World!"
+
+==>
+
+Program(String, String)
+
+# Escapes
+
+"quote: \" backslash: \\"
+"newline: \n unicode: é"
+
+==>
+
+Program(String(Escape, Escape), String(Escape))
+
+# s!/f! combine into StringInterp; {...} is parsed as code, brackets colored like the prefix
+
+s!"sum is {1 + 2}"
+f!"formatted {x}"
+
+==>
+
+Program(
+  StringInterp(InterpPrefix, InterpBraces(InterpBraceStart, Number, Operator, Number, "}")),
+  StringInterp(InterpPrefix, InterpBraces(InterpBraceStart, Identifier, "}"))
+)
+
+# Without an immediately-adjacent quote, s!/f! are just identifiers
+
+s! "space breaks it"
+s!
+def f! : Nat := 1
+
+==>
+
+Program(
+  Identifier, String,
+  Identifier,
+  Keyword, Identifier, Operator, TypeName, Operator, Number
+)
+
+# Raw strings
+
+r"a\nb"
+r#"has "quotes""#
+
+==>
+
+Program(RawString, RawString)
+
+# A brace in a string does not open a group
+
+"{x}"
+
+==>
+
+Program(String)

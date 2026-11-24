@@ -1,9 +1,9 @@
 {
-  "name": "@exercism/codemirror-lang-replace-this-with-the-track-slug",
+  "name": "@exercism/codemirror-lang-lean",
   "version": "0.0.1",
-  "description": "replace-this-with-the-track-name language support for CodeMirror",
+  "description": "Lean language support for CodeMirror",
   "scripts": {
-    "prepare": "bun run rollup -c",
+    "prepare": "bun --bun rollup -c",
     "dev": "vite"
   },
   "type": "module",
@@ -20,10 +20,14 @@
   },
   "dependencies": {
     "@codemirror/language": "^6.10.1",
+    "@codemirror/state": "^6.0.0",
+    "@codemirror/view": "^6.0.0",
+    "@leanprover/unicode-input": "^0.1.13",
     "@lezer/highlight": "^1.2.0",
     "@lezer/lr": "^1.4.0"
   },
   "devDependencies": {
+    "@codemirror/commands": "^6.0.0",
     "@lezer/generator": "^1.7.0",
     "@types/bun": "^1.1.14",
     "codemirror": "^6.0.1",
